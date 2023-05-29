@@ -1,0 +1,4 @@
+id = -1;
+thrdstop(1000, &id, handler1, (void *)0);
+cancelthrdstop(id, 1);
+thrdstop(1, &id, handler1, (void *)0);

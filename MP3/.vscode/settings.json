@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "proc.h": "c",
+        "date.h": "c",
+        "spinlock.h": "c",
+        "types.h": "c",
+        "riscv.h": "c",
+        "param.h": "c",
+        "memlayout.h": "c",
+        "user.h": "c",
+        "list.h": "c",
+        "threads_sched.h": "c",
+        "threads.h": "c",
+        "fcntl.h": "c"
+    }
+}

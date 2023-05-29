@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "fs.h": "c",
+        "*.tcc": "c",
+        "types.h": "c",
+        "param.h": "c",
+        "defs.h": "c",
+        "typeinfo": "c"
+    }
+}

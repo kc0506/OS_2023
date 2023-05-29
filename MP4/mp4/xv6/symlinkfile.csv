@@ -1,0 +1,8 @@
+make[1]: Entering directory '/home/xv6'
+make[1]: 'kernel/kernel' is up to date.
+make[1]: Leaving directory '/home/xv6'
+Testing symbolic links to files (private): (3.1s) 
+  Symbolic links to files: private testcase 1 (4 points): OK 
+  Symbolic links to files: private testcase 2 (4 points): OK 
+  Symbolic links to files: private testcase 3 (4 points): OK 
+Score: 12/12

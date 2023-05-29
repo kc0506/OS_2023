@@ -1,20 +1,24 @@
+//
 #include "kernel/types.h"
+//
 #include "user/user.h"
+//
 #include "user/threads.h"
 
 #define NULL 0
 
 int main_id = -1;
 
-void thrdstop_handler(void *arg)
-{
+void thrdstop_handler(void *arg) {
+    // printf("call handler.\n");
+
     int *lock = (int *)arg;
     *lock = 1;
+    // printf("arg = %d\n", arg);
     thrdresume(main_id);
 }
 
-int test_thrdstop_correct_timing_helper(int num_ticks)
-{
+int test_thrdstop_correct_timing_helper(int num_ticks) {
     int lock = 0;
     int start_time_outer = uptime();
 
@@ -35,24 +39,30 @@ int test_thrdstop_correct_timing_helper(int num_ticks)
         // t should be assigned before handler execution
         elapsed_time_lb = t - start_time_inner;
         if (elapsed_time_lb > num_ticks) {
-            fprintf(2, "thrdstop timing differs too much from expected value: "
-                       "expected=%d actual>=%d\n", num_ticks, elapsed_time_lb);
+            fprintf(2,
+                    "thrdstop timing differs too much from expected value: "
+                    "expected=%d actual>=%d\n",
+                    num_ticks, elapsed_time_lb);
             return 1;
+            break;
         }
     }
 
+    // printf("lock = %d\n", lock);
+
     int elapsed_time_ub = uptime() - start_time_outer;
     if (elapsed_time_ub < num_ticks || elapsed_time_lb > num_ticks) {
-        fprintf(2, "thrdstop timing differs too much from expected value: "
-                   "lower_bound=%d upper_bound=%d expected=%d\n", elapsed_time_lb, elapsed_time_ub, num_ticks);
+        fprintf(2,
+                "thrdstop timing differs too much from expected value: "
+                "lower_bound=%d upper_bound=%d expected=%d\n",
+                elapsed_time_lb, elapsed_time_ub, num_ticks);
         return 1;
     }
 
     return 0;
 }
 
-int test_thrdstop_correct_timing()
-{
+int test_thrdstop_correct_timing() {
     int args[] = {2, 1, 3, 5, 7, 1, 2};
     int failed = 0;
     for (int i = 0; i < sizeof(args) / sizeof(int); i++) {
@@ -66,8 +76,13 @@ int test_thrdstop_correct_timing()
     return failed;
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
+    // for (int i = 0; i < 10; i++) {
+    //     sleep(10);
+    //     printf("hi\n");
+    // }
+    // exit(0);
+
     int result = test_thrdstop_correct_timing();
     printf("[%s] %s\n", result ? "FAILED" : "OK", "test_thrdstop_correct_timing");
 

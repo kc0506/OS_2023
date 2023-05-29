@@ -1,0 +1,17 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "mp4",
+	"image": "ntuos/mp4",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools",
+				"formulahendry.code-runner",
+				"christian-kohler.path-intellisense",
+				"hoovercj.vscode-power-mode",
+				"PKief.material-icon-theme"
+			]
+		}
+	}
+}

@@ -17,11 +17,15 @@ print(f"syscalls score: {scores[0]}/{scores[1]}")
 for algo in ["EDF", "RM"]:
     print(f"******************** {algo} ********************")
     result = os.popen(f"python3 grade-mp3-{algo}.py").read()
-    score_line = [ln for ln in result.split("\n") if ln.startswith("Score:")][0]
-    scores = score_line.split("Score: ")[1].split("/")
-    total_score += int(scores[0])
-    max_score += int(scores[1])
-    print(f"{algo} scheduler score: {scores[0]}/{scores[1]}")
+    try:
+        score_line = [ln for ln in result.split(
+            "\n") if ln.startswith("Score:")][0]
+        scores = score_line.split("Score: ")[1].split("/")
+        total_score += int(scores[0])
+        max_score += int(scores[1])
+        print(f"{algo} scheduler score: {scores[0]}/{scores[1]}")
+    except Exception:
+        print(result)
 
 
 print("\n******************** Verdict ********************")
